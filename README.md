@@ -1,5 +1,6 @@
 # MANTIS
 
+<img src="https://github.com/user-attachments/assets/701020ba-2b18-4bf0-805e-ee75a211d7ed"> 
 
 ## What is Mantis?
 
