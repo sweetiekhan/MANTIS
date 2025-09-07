@@ -8,11 +8,11 @@
 <details>
     <summary><strong>What is Mantis?</strong></summary> 
 
-<p> Mantis is a monitoring tool built to monitor files, tasks, and requests sent from your system!</p> 
+<pre> Mantis is a monitoring tool built to monitor files, tasks, and requests sent from your system!
 
-<p> With this tool, you can understand how an exe file behaves with your files, what tasks it creates or closes, what requests it sends to where with what data!</p> 
+With this tool, you can understand how an exe file behaves with your files, what tasks it creates or closes, what requests it sends to where with what data!
 
-<p>Thisis tool is released as open source and you can use it for free!</p> 
+this tool is released as open source and you can use it for free!</pre> 
     
 </details>
 
