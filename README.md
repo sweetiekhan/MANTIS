@@ -45,3 +45,7 @@ In this section, you can specify a path, then click the monitoring button, (make
 - Task Monitoring Section
 
 You all have experience using Task Manager! This section makes your work easier! By clicking this button, a window with 4 sections will open for you, in these 4 sections you can see what files are running, what tasks were created by which programs, what tasks were closed, the list of closed Task
+
+- Network Monitoring Section
+
+In this section, you can see all the files, what requests, from which program, to where, with what data they are sent! You can almost understand what is happening behind the scenes of the program!
