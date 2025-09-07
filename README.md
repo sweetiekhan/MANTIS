@@ -23,3 +23,12 @@ This tool is released as open source and you can use it for free!</b>
    
    - Network Monitoring
 </details>
+
+
+<details>
+  <summary><strong>Why did I create Mantis?</strong></summary>
+  
+   - I designed this tool for analyzing programs
+
+   - You can read it here:<a href="https://github.com/Mr-Spect3r/MANTIS/blob/main/writeup.md"> WriteUp
+</details>
