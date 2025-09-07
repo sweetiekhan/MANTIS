@@ -33,3 +33,10 @@ This tool is released as open source and you can use it for free!</b>
 
    - You can read it here:<a href="https://github.com/Mr-Spect3r/MANTIS/blob/main/writeup.md"> WriteUp
 </details>
+
+## Help
+
+
+- File Monitoring Section
+
+In this section, you can specify a path, then click the monitoring button, (make sure the program you want is in the same path) From now on, any activity related to files your program has will be logged for you! File creation, file deletion, file update (edit) and file transfer
