@@ -1,8 +1,7 @@
 # MANTIS
 
 
-<details>
-    <summary><strong>What is Mantis?</strong></summary> 
+## What is Mantis?
 
 <b>Mantis is a monitoring tool built to monitor files, tasks, and requests sent from your system!
 
@@ -10,7 +9,6 @@ With this tool, you can understand how an exe file behaves with your files, what
 
 this tool is released as open source and you can use it for free!</b> 
     
-</details>
 
 <details>
   <summary><strong>What does mantis mean?</strong></summary>
