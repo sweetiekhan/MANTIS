@@ -8,7 +8,7 @@
 <details>
     <summary><strong>What is Mantis?</strong></summary> 
 
-<pre> Mantis is a monitoring tool built to monitor files, tasks, and requests sent from your system!
+<pre>Mantis is a monitoring tool built to monitor files, tasks, and requests sent from your system!
 
 With this tool, you can understand how an exe file behaves with your files, what tasks it creates or closes, what requests it sends to where with what data!
 
