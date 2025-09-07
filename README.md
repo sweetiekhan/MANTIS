@@ -7,10 +7,19 @@
 
 With this tool, you can understand how an exe file behaves with your files, what tasks it creates or closes, what requests it sends to where with what data!
 
-this tool is released as open source and you can use it for free!</b> 
-    
+This tool is released as open source and you can use it for free!</b> 
 
 <details>
   <summary><strong>What does mantis mean?</strong></summary>
   <p>Monitoring All Network, Tasks, and Integrated Systems</p>
+</details>
+
+<details>
+  <summary><strong>Features</strong></summary>
+  
+   - File Monitoring (You can see what files/folders have been created, edited, or deleted)</p> 
+   
+   - Task Manager Monitoring (You can see which tasks were created by which program, which tasks are opened, and which tasks are currently running.)</p> 
+   
+   - Network Monitoring
 </details>
