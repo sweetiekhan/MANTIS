@@ -40,3 +40,8 @@ This tool is released as open source and you can use it for free!</b>
 - File Monitoring Section
 
 In this section, you can specify a path, then click the monitoring button, (make sure the program you want is in the same path) From now on, any activity related to files your program has will be logged for you! File creation, file deletion, file update (edit) and file transfer
+
+
+- Task Monitoring Section
+
+You all have experience using Task Manager! This section makes your work easier! By clicking this button, a window with 4 sections will open for you, in these 4 sections you can see what files are running, what tasks were created by which programs, what tasks were closed, the list of closed Task
