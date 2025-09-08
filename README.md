@@ -120,5 +120,8 @@ File Exe: <a href="https://github.com/Mr-Spect3r/MANTIS/releases/download/MANTIS
 
 <img src="https://github.com/user-attachments/assets/0db87f42-8c77-4808-a0af-d25005b14831">
 
+![Project Image](https://github.com/user-attachments/assets/7e31deea-5787-45c1-ab99-68b9d7552f2d)
+
+
 
 
