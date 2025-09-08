@@ -14,7 +14,7 @@ from graphviz import Digraph
 import tempfile
 from PIL import Image, ImageTk
 import uuid
-
+import hashlib
 
 FILTER = "tcp"
 MAX_PAYLOAD = 200
@@ -45,8 +45,6 @@ def get_process_name_and_exe(src_ip, src_port, dst_ip, dst_port):
         except:
             continue
     return "N/A", "N/A"
-
-import hashlib
 
 def safe_node_id(text: str) -> str:
     return "n" + hashlib.md5(text.encode()).hexdigest()
@@ -603,3 +601,4 @@ if __name__ == "__main__":
         run_as_admin()
     app = MonitorApp(path=f"C:\\Users\\{os.getlogin()}")
     app.mainloop()
+
