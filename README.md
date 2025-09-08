@@ -94,3 +94,14 @@ You all have experience using Task Manager! This section makes your work easier!
 - Network Monitoring Section
 
 In this section, you can see all the files, what requests, from which program, to where, with what data they are sent! You can almost understand what is happening behind the scenes of the program!
+
+- How to Run:
+
+```
+git clone https://github.com/Mr-Spect3r/MANTIS
+cd MANTIS
+pip install -r requirements.txt
+python MANTIS.py
+```
+
+<a href="https://github.com/Mr-Spect3r/MANTIS/releases">To download and view new versions or exe files, go to this section</a>
