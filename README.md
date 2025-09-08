@@ -48,7 +48,33 @@ graphviz
 Pillow
 queue
 
-   - You can read it here:<a href="https://github.com/Mr-Spect3r/MANTIS/blob/main/writeup.md"> WriteUp
+   - install graphviz (for use graph)
+
+Open Powershell and Type: `winget install graphviz`
+
+- and set address in System:
+
+Open Environment Variables:
+
+Right-click This PC → Properties → Advanced system settings → Environment Variables
+
+Edit PATH:
+
+Under System variables, select Path → Edit → New → add the folder path (e.g., C:\Program Files\Graphviz\bin) → OK
+
+Apply & Test:
+
+<img src="https://github.com/user-attachments/assets/eb8e2f02-b228-4ac4-988b-17b3176ae543">
+
+Close all dialogs, open a new terminal, and run:
+
+`dot -V`
+
+
+You should see the Graphviz version.
+
+I can also give a super concise 3-line version for quick reference if you want.
+
 </details>
 
 ## Help
