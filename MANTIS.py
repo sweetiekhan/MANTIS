@@ -10,6 +10,11 @@ import pydivert
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 import customtkinter as ctk
+from graphviz import Digraph
+import tempfile
+from PIL import Image, ImageTk
+import uuid
+
 
 FILTER = "tcp"
 MAX_PAYLOAD = 200
@@ -40,6 +45,11 @@ def get_process_name_and_exe(src_ip, src_port, dst_ip, dst_port):
         except:
             continue
     return "N/A", "N/A"
+
+import hashlib
+
+def safe_node_id(text: str) -> str:
+    return "n" + hashlib.md5(text.encode()).hexdigest()
 
 
 def parse_http(data_bytes):
@@ -205,6 +215,10 @@ class NetworkMonitorWindow(ctk.CTkToplevel):
         ctk.CTkButton(filter_frame, text="Apply Filter", command=self.apply_filter).pack(side="left", padx=5)
         ctk.CTkButton(filter_frame, text="Stop Network Monitor", fg_color="#ff2b2b", hover_color="#990000",
                       command=self.stop_monitor).pack(side="right", padx=5)
+    
+        ctk.CTkButton(filter_frame, text="Graph", fg_color="#ffaa00", hover_color="#cc8800",
+              command=self.show_graph).pack(side="right", padx=5)
+
 
         self.text_box = ctk.CTkTextbox(self, fg_color="#111111", text_color="#cccccc", font=("Consolas", 13))
         self.text_box.pack(fill="both", expand=True, padx=10, pady=5)
@@ -233,6 +247,87 @@ class NetworkMonitorWindow(ctk.CTkToplevel):
                     w.send(packet)
         except Exception as e:
             self.packet_queue.put({"error": str(e)})
+    def show_graph(self):
+        if not hasattr(self, "_graph_window") or not getattr(self, "_graph_window", None):
+            self._graph_window = ctk.CTkToplevel(self)
+            win = self._graph_window
+            win.title("🌐 Network Graph")
+            win.geometry("1200x850")
+            win.configure(fg_color="#0b0b0b")
+
+            canvas_frame = ctk.CTkFrame(win)
+            canvas_frame.pack(fill="both", expand=True)
+
+            self._graph_canvas = ctk.CTkCanvas(canvas_frame, bg="#0b0b0b", highlightthickness=0)
+            h_scroll = ctk.CTkScrollbar(canvas_frame, orientation="horizontal", command=self._graph_canvas.xview)
+            v_scroll = ctk.CTkScrollbar(canvas_frame, orientation="vertical", command=self._graph_canvas.yview)
+            self._graph_canvas.configure(xscrollcommand=h_scroll.set, yscrollcommand=v_scroll.set)
+
+            h_scroll.pack(side="bottom", fill="x")
+            v_scroll.pack(side="right", fill="y")
+            self._graph_canvas.pack(side="left", fill="both", expand=True)
+
+            def zoom(event):
+                factor = 1.1 if event.delta > 0 else 0.9
+                self._graph_canvas.scale("all", 0, 0, factor, factor)
+                self._graph_canvas.config(scrollregion=self._graph_canvas.bbox("all"))
+
+            self._graph_canvas.bind("<MouseWheel>", zoom)
+
+        def update_graph():
+            if not self._graph_window.winfo_exists():
+                return  
+
+            dot = Digraph(comment="Network Graph", format="png", engine="fdp")
+
+            dot.attr(bgcolor="black")
+            dot.attr("node", style="filled", fontname="Consolas", fontsize="12")
+
+            edges = set()
+            for pkt in self.all_packets:
+                try:
+                    src_ip, dst_ip = pkt.src_addr, pkt.dst_addr
+                    src_port, dst_port = pkt.src_port, pkt.dst_port
+                    proc_name, exe_path = get_process_name_and_exe(src_ip, src_port, dst_ip, dst_port)
+                    if proc_name == "N/A":
+                        continue
+
+                    proc_node = f"{proc_name}\n{exe_path}"
+                    ip_node = dst_ip
+
+                    safe_proc_node = proc_node.replace("\\", "_").replace(":", "_").replace("/", "_").replace(",", "_")
+                    safe_ip_node = ip_node.replace("\\", "_").replace(":", "_").replace("/", "_").replace(",", "_")
+
+                    dot.node(safe_proc_node, fillcolor="#0066ff", fontcolor="white", shape="box")
+                    dot.node(safe_ip_node, fillcolor="#00cc00", fontcolor="black", shape="ellipse")
+
+                    edge = (safe_proc_node, safe_ip_node)
+                    if edge not in edges:
+                        dot.edge(safe_proc_node, safe_ip_node, color="white")
+                        edges.add(edge)
+                except:
+                    continue
+
+            if not edges:
+                return  
+
+            outpath = os.path.join(tempfile.gettempdir(), f"network_graph_{uuid.uuid4().hex}")
+            dot.render(outpath, format="png", cleanup=True)
+            img_path = outpath + ".png"
+
+            img = Image.open(img_path)
+            img_width, img_height = img.size
+
+            tk_img = ImageTk.PhotoImage(img)
+            self._graph_canvas.delete("all")
+            self._graph_canvas.create_image(0, 0, anchor="nw", image=tk_img)
+            self._graph_canvas.image = tk_img
+            self._graph_canvas.config(scrollregion=(0, 0, img_width, img_height))
+
+            self._graph_window.after(5000, update_graph)
+
+        update_graph()
+
 
     def process_packet_queue(self):
         while not self.packet_queue.empty():
