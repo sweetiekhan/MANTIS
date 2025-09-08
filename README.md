@@ -108,6 +108,7 @@ pip install -r requirements.txt
 python MANTIS.py
 ```
 
+File Exe: <a href="https://github.com/Mr-Spect3r/MANTIS/releases/download/MANTIS/MANTIS.exe)">Download
 
 # ScreenShots
 
