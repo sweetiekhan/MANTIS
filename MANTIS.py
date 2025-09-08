@@ -5,7 +5,7 @@ import time
 import threading,queue
 from datetime import datetime
 import socket
-import psutil
+import psutil,subprocess
 import pydivert
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -14,7 +14,7 @@ from graphviz import Digraph
 import tempfile
 from PIL import Image, ImageTk
 import uuid
-import hashlib
+
 
 FILTER = "tcp"
 MAX_PAYLOAD = 200
@@ -45,6 +45,8 @@ def get_process_name_and_exe(src_ip, src_port, dst_ip, dst_port):
         except:
             continue
     return "N/A", "N/A"
+
+import hashlib
 
 def safe_node_id(text: str) -> str:
     return "n" + hashlib.md5(text.encode()).hexdigest()
@@ -477,6 +479,11 @@ class MonitorApp(ctk.CTk):
                        fg_color="#ffaa00", hover_color="#ff8800",
                        corner_radius=15,
                        command=self.open_about).grid(row=0, column=3, padx=10)
+        ctk.CTkButton(self.button_frame, text="💻 CPU Monitor",
+               fg_color="#ffaa00", hover_color="#cc8800",
+               corner_radius=15,
+               command=self.open_cpu_monitor).grid(row=0, column=4, padx=10)
+
         self.footer_label = ctk.CTkLabel(self.bg_frame, text="MANTIS\nMonitoring All Network, Tasks, Integrated Systems",
                                          font=("Consolas", 20, "bold"),
                                          text_color="#ff0000")
@@ -500,6 +507,9 @@ class MonitorApp(ctk.CTk):
     def open_network_monitor(self):
         if not self.network_monitor_window or not self.network_monitor_window.winfo_exists():
             self.network_monitor_window = NetworkMonitorWindow(self)
+
+    def open_cpu_monitor(self):
+        subprocess.Popen([sys.executable, "cpumonitor.py"])
 
     def open_about(self):
         if self.about_window and self.about_window.winfo_exists():
@@ -601,4 +611,3 @@ if __name__ == "__main__":
         run_as_admin()
     app = MonitorApp(path=f"C:\\Users\\{os.getlogin()}")
     app.mainloop()
-
