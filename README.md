@@ -20,7 +20,7 @@ This tool is released as open source and you can use it for free!</b>
   
    - File Monitoring (You can see what files/folders have been created, edited, or deleted)</p> 
    
-   - Task Manager Monitoring (You can see which tasks were created by which program, which tasks are opened, and which tasks are currently running.)</p> 
+   - Process Monitoring (You can see which tasks were created by which program, which tasks are opened, and which tasks are currently running.)</p> 
    
    - Network Monitoring
 </details>
@@ -34,6 +34,23 @@ This tool is released as open source and you can use it for free!</b>
    - You can read it here:<a href="https://github.com/Mr-Spect3r/MANTIS/blob/main/writeup.md"> WriteUp
 </details>
 
+
+<details>
+  <summary><strong>Prerequisites</strong></summary>
+  
+   - Libraries
+
+psutil
+pydivert
+watchdog
+customtkinter
+graphviz
+Pillow
+queue
+
+   - You can read it here:<a href="https://github.com/Mr-Spect3r/MANTIS/blob/main/writeup.md"> WriteUp
+</details>
+
 ## Help
 
 
@@ -42,7 +59,7 @@ This tool is released as open source and you can use it for free!</b>
 In this section, you can specify a path, then click the monitoring button, (make sure the program you want is in the same path) From now on, any activity related to files your program has will be logged for you! File creation, file deletion, file update (edit) and file transfer
 
 
-- Task Monitoring Section
+- Process Monitoring Section
 
 You all have experience using Task Manager! This section makes your work easier! By clicking this button, a window with 4 sections will open for you, in these 4 sections you can see what files are running, what tasks were created by which programs, what tasks were closed, the list of closed Task
 
