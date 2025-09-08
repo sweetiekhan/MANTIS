@@ -40,6 +40,7 @@ This tool is released as open source and you can use it for free!</b>
   
    - Libraries
 
+```
 psutil
 pydivert
 watchdog
@@ -47,6 +48,7 @@ customtkinter
 graphviz
 Pillow
 queue
+```
 
    - install graphviz (for use graph)
 
