@@ -10,6 +10,8 @@ With this tool, you can understand how an exe file behaves with your files, what
 
 This tool is released as open source and you can use it for free!</b> 
 
+<img src="https://github.com/user-attachments/assets/15c672ff-97ab-4737-b8ad-79f9fbd034d8">
+
 <details>
   <summary><strong>What does mantis mean?</strong></summary>
   <p>Monitoring All Network, Tasks, and Integrated Systems</p>
@@ -105,3 +107,17 @@ python MANTIS.py
 ```
 
 <a href="https://github.com/Mr-Spect3r/MANTIS/releases">To download and view new versions or exe files, go to this section</a>
+
+
+# ScreenShots
+
+- Process Monitor
+
+<img src="https://github.com/user-attachments/assets/7e31deea-5787-45c1-ab99-68b9d7552f2d">
+
+- Network Monitor
+
+<img src="https://github.com/user-attachments/assets/0db87f42-8c77-4808-a0af-d25005b14831">
+
+
+
