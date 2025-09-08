@@ -1,0 +1,7 @@
+psutil
+pydivert
+watchdog
+customtkinter
+graphviz
+Pillow
+queue
