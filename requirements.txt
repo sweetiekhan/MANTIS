@@ -5,3 +5,5 @@ customtkinter
 graphviz
 Pillow
 queue
+pyqtgraph
+PySide6
