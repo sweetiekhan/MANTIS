@@ -52,6 +52,8 @@ customtkinter
 graphviz
 Pillow
 queue
+pyqtgraph
+PySide6
 ```
 
    - install graphviz (for use graph)
