@@ -408,7 +408,7 @@ class AboutWindow(ctk.CTkToplevel):
         self.title("ℹ️ About")
         self.geometry("800x500")
         self.configure(fg_color="#0b0b0b")
-
+        
         container = ctk.CTkFrame(self, fg_color="#0b0b0b")
         container.pack(fill="both", expand=True, padx=10, pady=10)
 
@@ -509,7 +509,7 @@ class MonitorApp(ctk.CTk):
             self.network_monitor_window = NetworkMonitorWindow(self)
 
     def open_cpu_monitor(self):
-        subprocess.Popen([sys.executable, "cpumonitor.py"])
+        os.system("cpumonitor.exe")
 
     def open_about(self):
         if self.about_window and self.about_window.winfo_exists():
@@ -529,26 +529,46 @@ class FileMonitorWindow(ctk.CTkToplevel):
     def __init__(self, master, path="."):
         super().__init__(master)
         self.title("📁 File Monitor")
-        self.geometry("900x500")
+        self.geometry("950x600")
         self.configure(fg_color="#0b0b0b")
 
         self.path = path
         self.file_monitor = None
-        self.monitor_thread = None
         self.is_monitoring = False
+        self.logs = []  
 
-        self.path_button = ctk.CTkButton(self, text="📂 Open Folder", 
+        top_frame = ctk.CTkFrame(self, fg_color="#0b0b0b")
+        top_frame.pack(fill="x", pady=(8,4), padx=8)
+        self.path_button = ctk.CTkButton(top_frame, text="📂 Open Folder",
                                          fg_color="#ffaa00", hover_color="#ff8800",
                                          command=self.select_path)
-        self.path_button.pack(pady=5)
-        self.path_label = ctk.CTkLabel(self, text=f"Current Path: {self.path}", text_color="#cccccc")
-        self.path_label.pack(pady=5)
+        self.path_button.pack(side="left", padx=(0,8))
+        self.path_label = ctk.CTkLabel(top_frame, text=f"Current Path: {self.path}",
+                                       text_color="#cccccc")
+        self.path_label.pack(side="left")
+
+        filter_frame = ctk.CTkFrame(self, fg_color="#1b1b1b")
+        filter_frame.pack(fill="x", pady=6, padx=8)
+
+        self.name_filter = ctk.StringVar()
+        self.ext_filter = ctk.StringVar()
+        self.type_filter = ctk.StringVar()
+
+        ctk.CTkLabel(filter_frame, text="Filename:", text_color="#ffffff").pack(side="left", padx=6)
+        ctk.CTkEntry(filter_frame, textvariable=self.name_filter, width=150).pack(side="left", padx=6)
+
+        ctk.CTkLabel(filter_frame, text="Ext:", text_color="#ffffff").pack(side="left", padx=6)
+        ctk.CTkEntry(filter_frame, textvariable=self.ext_filter, width=90).pack(side="left", padx=6)
+
+        ctk.CTkLabel(filter_frame, text="Type:", text_color="#ffffff").pack(side="left", padx=6)
+        ctk.CTkOptionMenu(filter_frame, variable=self.type_filter,
+                          values=["ALL", "CREATED", "DELETED", "UPDATED", "MOVED"]).pack(side="left", padx=6)
+        self.type_filter.set("ALL")
+        ctk.CTkButton(filter_frame, text="Apply Filter", command=self.apply_filter).pack(side="left", padx=8)
 
         self.log_box = ctk.CTkTextbox(self, width=850, height=350, fg_color="#111111",
                                       text_color="#cccccc", font=("Consolas", 14))
         self.log_box.pack(pady=10, padx=10, fill="both", expand=True)
-        self.log_box.configure(state="normal")  
-
         self.log_box.tag_config("CREATED", foreground="#00ff00")
         self.log_box.tag_config("UPDATED", foreground="#ffff00")
         self.log_box.tag_config("DELETED", foreground="#ff2b2b")
@@ -557,35 +577,130 @@ class FileMonitorWindow(ctk.CTkToplevel):
         self.log_box.tag_config("time", foreground="#aaaaaa")
         self.log_box.tag_config("path", foreground="#ffffff")
 
-        self.button_frame = ctk.CTkFrame(self, fg_color="#0b0b0b")
-        self.button_frame.pack(pady=5)
-        self.start_button = ctk.CTkButton(self.button_frame, text="▶ Start Monitoring",
+        btn_frame = ctk.CTkFrame(self, fg_color="#0b0b0b")
+        btn_frame.pack(pady=6)
+
+        self.start_button = ctk.CTkButton(btn_frame, text="▶ Start Monitoring",
                                           fg_color="#ff2b2b", hover_color="#990000",
                                           command=self.start_monitoring)
-        self.start_button.grid(row=0, column=0, padx=10)
-        self.stop_button = ctk.CTkButton(self.button_frame, text="⏹ Stop Monitoring",
+        self.start_button.grid(row=0, column=0, padx=6)
+        self.stop_button = ctk.CTkButton(btn_frame, text="⏹ Stop Monitoring",
                                          fg_color="#444444", hover_color="#666666",
-                                         state="disabled",
-                                         command=self.stop_monitoring)
-        self.stop_button.grid(row=0, column=1, padx=10)
+                                         state="disabled", command=self.stop_monitoring)
+        self.stop_button.grid(row=0, column=1, padx=6)
 
-        self.path = path
-        self.file_monitor = None
-        self.is_monitoring = False
+        ctk.CTkButton(btn_frame, text="🧹 Clear Display", fg_color="#ffaa00",
+                      command=self.clear_display).grid(row=0, column=2, padx=6)
+        ctk.CTkButton(btn_frame, text="🧼 Clear All", fg_color="#cc6600",
+                      command=self.clear_all).grid(row=0, column=3, padx=6)
+
+        ctk.CTkButton(btn_frame, text="💾 Save Log", fg_color="#0066ff",
+                      command=self.save_logs).grid(row=0, column=4, padx=6)
+
+        try:
+            self.name_filter.trace_add("write", lambda *args: self.apply_filter())
+            self.ext_filter.trace_add("write", lambda *args: self.apply_filter())
+            self.type_filter.trace_add("write", lambda *args: self.apply_filter())
+        except Exception:
+            self.name_filter.trace("w", lambda *args: self.apply_filter())
+            self.ext_filter.trace("w", lambda *args: self.apply_filter())
+            self.type_filter.trace("w", lambda *args: self.apply_filter())
+
+    def _split_moved_paths(self, path_str):
+        if "→" in path_str:
+            parts = [p.strip() for p in path_str.split("→")]
+            return parts
+        return [path_str]
+
+    def passes_filter(self, log):
+        name_f = self.name_filter.get().strip().lower()
+        ext_f = self.ext_filter.get().strip().lower().lstrip(".")
+        type_f = self.type_filter.get().strip()
+
+        if type_f != "ALL" and log["action"] != type_f:
+            return False
+
+        if name_f:
+            ok = False
+            for p in self._split_moved_paths(log["path"]):
+                if name_f in os.path.basename(p).lower() or name_f in p.lower():
+                    ok = True
+                    break
+            if not ok:
+                return False
+
+        if ext_f:
+            ok = False
+            for p in self._split_moved_paths(log["path"]):
+                _, ext = os.path.splitext(p)
+                if ext.lower().lstrip(".") == ext_f:
+                    ok = True
+                    break
+            if not ok:
+                return False
+
+        return True
 
     def log_callback(self, action, file_path):
+        clean_path = os.path.normpath(file_path).replace("/", "\\")
+
         timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-        self.log_box.configure(state="normal")
-        self.log_box.insert("end", f"[{timestamp}] ", "time")
-        self.log_box.insert("end",f"{action} → ", action)
-        self.log_box.insert("end",f"{file_path}\n", "path")
+        log_entry = {"time": timestamp, "action": action, "path": clean_path}
+        self.logs.append(log_entry)
+
+        if self.passes_filter(log_entry):
+            self.log_box.insert("end", f"[{timestamp}] ", "time")
+            self.log_box.insert("end", f"{action} → ", action)
+            self.log_box.insert("end", f"{clean_path}\n", "path")
+            self.log_box.see("end")
+
+
+    def apply_filter(self):
+        self.log_box.delete("1.0", "end")
+        for log in self.logs:
+            if self.passes_filter(log):
+                self.log_box.insert("end", f"[{log['time']}] ", "time")
+                self.log_box.insert("end", f"{log['action']} → ", log["action"])
+                self.log_box.insert("end", f"{log['path']}\n", "path")
         self.log_box.see("end")
+
+    def clear_display(self):
+        self.log_box.delete("1.0", "end")
+
+    def clear_all(self):
+        self.logs = []
+        self.log_box.delete("1.0", "end")
+
+    def save_logs(self):
+        import json
+        grouped = {}
+        for log in self.logs:
+            try:
+                date_key = datetime.strptime(log["time"], "%Y-%m-%d %H:%M:%S").strftime("%Y/%m/%d")
+            except Exception:
+                date_key = log["time"].split(" ")[0].replace("-", "/")
+            if date_key not in grouped:
+                grouped[date_key] = {"CREATED": [], "DELETED": [], "UPDATED": [], "MOVED": [], "SYSTEM": []}
+
+            action = log["action"] if log["action"] in grouped[date_key] else "SYSTEM"
+            grouped[date_key][action].append(f"[{log['time']}] {log['path']}")
+
+        filename = f"logs_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+        try:
+            with open(filename, "w", encoding="utf-8") as f:
+                json.dump(grouped, f, indent=4, ensure_ascii=False)
+            self.log_box.insert("end", f"\n[SYSTEM] Logs saved to {filename}\n", "SYSTEM")
+            self.log_box.see("end")
+        except Exception as e:
+            self.log_box.insert("end", f"\n[SYSTEM] Save failed: {e}\n", "SYSTEM")
+
     def select_path(self):
         from tkinter import filedialog
         folder_selected = filedialog.askdirectory()
         if folder_selected:
             self.path = folder_selected
             self.path_label.configure(text=f"Current Path: {self.path}")
+
     def start_monitoring(self):
         if self.is_monitoring:
             return
@@ -599,7 +714,10 @@ class FileMonitorWindow(ctk.CTkToplevel):
     def stop_monitoring(self):
         if not self.is_monitoring:
             return
-        self.file_monitor.stop()
+        try:
+            self.file_monitor.stop()
+        except Exception:
+            pass
         self.is_monitoring = False
         self.start_button.configure(state="normal")
         self.stop_button.configure(state="disabled")
