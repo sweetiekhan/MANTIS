@@ -123,3 +123,6 @@ File Exe: <a href="https://github.com/Mr-Spect3r/MANTIS/releases/download/MANTIS
 <img src="https://github.com/user-attachments/assets/0db87f42-8c77-4808-a0af-d25005b14831">
 
 
+# New version 1.3.1
+
+<img src="https://github.com/user-attachments/assets/74d0e58e-cc00-446b-a952-535af7fc3d65">
