@@ -86,7 +86,11 @@ class FileMonitorHandler(FileSystemEventHandler):
         self.log_callback("UPDATED", event.src_path)
 
     def on_moved(self, event):
-        self.log_callback("MOVED", f"{event.src_path} → {event.dest_path}")
+        if event.src_path != event.dest_path:
+            if os.path.basename(event.src_path) != os.path.basename(event.dest_path):
+                self.log_callback("RENAMED", f"{event.src_path} → {event.dest_path}")
+            else:
+                self.log_callback("MOVED", f"{event.src_path} → {event.dest_path}")
 
 class FileMonitor:
     def __init__(self, path, log_callback):
@@ -557,7 +561,7 @@ class FileMonitorWindow(ctk.CTkToplevel):
         ctk.CTkLabel(filter_frame, text="Filename:", text_color="#ffffff").pack(side="left", padx=6)
         ctk.CTkEntry(filter_frame, textvariable=self.name_filter, width=150).pack(side="left", padx=6)
 
-        ctk.CTkLabel(filter_frame, text="Ext:", text_color="#ffffff").pack(side="left", padx=6)
+        ctk.CTkLabel(filter_frame, text="Format:", text_color="#ffffff").pack(side="left", padx=6)
         ctk.CTkEntry(filter_frame, textvariable=self.ext_filter, width=90).pack(side="left", padx=6)
 
         ctk.CTkLabel(filter_frame, text="Type:", text_color="#ffffff").pack(side="left", padx=6)
