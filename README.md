@@ -14,6 +14,8 @@ This tool is released as open source and you can use it for free!</b>
 
 <a href="https://github.com/Mr-Spect3r/MANTIS/releases">To download and view new versions or exe files, go to this section</a>
 
+<b>Linux Version: (with Go):</b> <i>https://github.com/6-E-L-F-6/process-monitoring</i>
+
 <details>
   <summary><strong>What does mantis mean?</strong></summary>
   <p>Monitoring All Network, Tasks, and Integrated Systems</p>
